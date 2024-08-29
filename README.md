@@ -1,4 +1,3 @@
-# 00004 - **DevOps Module for Kubernetes Cluster**
 This is terraform module repository to maintain the version DevOps related resources to install inside the Kubernetes cluster. 
 
 **Following the resources and provider supports in this module in Version 1.0.0**
