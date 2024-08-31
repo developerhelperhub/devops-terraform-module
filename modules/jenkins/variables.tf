@@ -1,20 +1,31 @@
 variable "kubernetes_namespace" {
-    description = "Namepace of kubernetes the service need to install"
+  type        = string
+  description = "Namepace of kubernetes the service need to install"
+}
+
+variable "jenkins_enable" {
+  type        = bool
+  description = "Enable the installation of Jenkins"
+  default = true
 }
 
 variable "service_port" {
-    description = "Jenkins service port"
+  type        = number
+  description = "Service port"
+  default     = 8080
 }
 
 variable "domain_name" {
-  description = "Jenkins domain name"
+  type        = string
+  description = "Domain name"
 }
 
 variable "admin_username" {
-  description = "Jenkins admin username"
+  type        = string
+  description = "Admin username"
 }
 
 variable "admin_password" {
-  description = "Jenkins admin password"
-#  sensitive = true 
+  type        = string
+  description = "Admin password"
 }

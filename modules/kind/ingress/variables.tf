@@ -1,15 +1,19 @@
 variable "kube_endpoint" {
-  description = "Kubernetes endpoint"
+  type        = string
+  description = "Endpoint"
 }
 
 variable "kube_client_key" {
-  description = "Kubernetes client key"
+  type        = string
+  description = "Client key"
 }
 
 variable "kube_client_certificate" {
-  description = "Kubernetes client certificate"
+  type        = string
+  description = "Client certificate"
 }
 
 variable "kube_cluster_ca_certificate" {
-  description = "Kubernetes client ca certificate"
+  type        = string
+  description = "Client ca certificate"
 }

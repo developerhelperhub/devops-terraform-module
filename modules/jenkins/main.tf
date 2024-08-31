@@ -5,6 +5,7 @@ resource "helm_release" "jenkins" {
   chart      = "jenkins"
   version    = "5.4.2"
 
+  count     = var.jenkins_enable ? 1 : 0
   namespace = var.kubernetes_namespace
 
   set {
@@ -28,7 +29,10 @@ resource "helm_release" "jenkins" {
 }
 
 # Jenkins ingress configuration 
-resource "kubernetes_ingress_v1" "jenkins-ingress" {
+resource "kubernetes_ingress_v1" "jenkins_ingress" {
+
+  count = var.jenkins_enable ? 1 : 0
+
   metadata {
     name      = "jenkins-ingress"
     namespace = var.kubernetes_namespace
@@ -42,11 +46,11 @@ resource "kubernetes_ingress_v1" "jenkins-ingress" {
       host = var.domain_name
       http {
         path {
-          path     = "/"
+          path      = "/"
           path_type = "Prefix"
           backend {
             service {
-              name = helm_release.jenkins.name
+              name = helm_release.jenkins[0].name
               port {
                 number = var.service_port
               }
@@ -57,5 +61,5 @@ resource "kubernetes_ingress_v1" "jenkins-ingress" {
     }
   }
 
-  depends_on = [helm_release.jenkins]
+  depends_on = [helm_release.jenkins[0]]
 }

@@ -1,24 +1,26 @@
 variable "kubernetes_namespace" {
-    description = "Namepace of kubernetes the service need to install"
+  type        = string
+  description = "Namepace of kubernetes the service need to install"
+}
+
+variable "jfrog_enable" {
+  type        = bool
+  description = "Enable the installation of Jfrog"
+  default = false
 }
 
 variable "service_port" {
-    description = "Jfrog service port"
+  type        = number
+  description = "Service port"
+  default     = 8082
 }
 
 variable "postgresql_password" {
-    description = "Postgresql password"
+  type        = string
+  description = "Postgresql password"
 }
 
 variable "domain_name" {
-  description = "Jfrog domain name"
+  type        = string
+  description = "Domain name"
 }
-
-# variable "admin_username" {
-#   description = "Jfrog admin username"
-# }
-
-# variable "admin_password" {
-#   description = "Jfrog admin password"
-# #  sensitive = true 
-# }

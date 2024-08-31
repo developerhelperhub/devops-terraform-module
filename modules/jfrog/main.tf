@@ -1,10 +1,11 @@
 #This module is used to manage Artifactory-related resources, providers and Kubernetes ingress configuration. The Helm Artifactory support version 107.90.8.
-resource "helm_release" "artifactory-oss" {
+resource "helm_release" "artifactory_oss" {
   name       = "jfrog-artifactory-oss"
   repository = "https://charts.jfrog.io"
   chart      = "artifactory-oss"
   version    = "107.90.8"
 
+  count     = var.jfrog_enable ? 1 : 0
   namespace = var.kubernetes_namespace
 
   set {
@@ -28,7 +29,10 @@ resource "helm_release" "artifactory-oss" {
 }
 
 # Artifactory ingress configuration 
-resource "kubernetes_ingress_v1" "artifactory-oss-ingress" {
+resource "kubernetes_ingress_v1" "artifactory_oss_ingress" {
+
+  count = var.jfrog_enable ? 1 : 0
+
   metadata {
     name      = "artifactory-oss-ingress"
     namespace = var.kubernetes_namespace
@@ -42,11 +46,11 @@ resource "kubernetes_ingress_v1" "artifactory-oss-ingress" {
       host = var.domain_name
       http {
         path {
-          path     = "/"
+          path      = "/"
           path_type = "Prefix"
           backend {
             service {
-              name = helm_release.artifactory-oss.name
+              name = helm_release.artifactory_oss[0].name
               port {
                 number = var.service_port
               }
@@ -57,5 +61,5 @@ resource "kubernetes_ingress_v1" "artifactory-oss-ingress" {
     }
   }
 
-  depends_on = [helm_release.artifactory-oss]
+  depends_on = [helm_release.artifactory_oss[0]]
 }
