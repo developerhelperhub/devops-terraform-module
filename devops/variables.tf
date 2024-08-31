@@ -30,3 +30,15 @@ variable "jenkins_admin_password" {
     description = "Jenkins admin password"
 #    sensitive = true 
 }
+
+variable "jfrog_service_port" {
+    description = "Jfrog service port"
+}
+
+variable "jfrog_domain_name" {
+    description = "Jfrog domain name"
+}
+
+variable "jfrog_postgresql_password" {
+    description = "Jfrog Postgresql password"
+}

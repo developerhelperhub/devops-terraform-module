@@ -59,3 +59,15 @@ module "jenkins" {
 
   depends_on = [module.kubernetes_namespace]
 }
+
+#Instaling the jfrog artifactory oss
+module "jfrog-artifactory-oss" {
+  source = "git::https://github.com/developerhelperhub/devops-terraform-module.git//modules/jfrog?ref=dev"
+  
+  kubernetes_namespace = module.kubernetes_namespace.namespace
+  service_port = var.jfrog_service_port
+  domain_name = var.jfrog_domain_name
+  postgresql_password = var.jfrog_postgresql_password
+
+  depends_on = [module.kubernetes_namespace]
+}
