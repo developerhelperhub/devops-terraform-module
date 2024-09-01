@@ -38,6 +38,7 @@ resource "kubernetes_ingress_v1" "artifactory_oss_ingress" {
     namespace = var.kubernetes_namespace
     annotations = {
       "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+      "nginx.ingress.kubernetes.io/proxy-body-size" = "0"
     }
   }
 
