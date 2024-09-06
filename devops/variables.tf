@@ -28,7 +28,7 @@ variable "kubernetes_namespace" {
 variable "jenkins_enable" {
   type        = bool
   description = "Enable the installation of Jenkins"
-  default = true
+  default     = true
 }
 
 variable "jenkins_service_port" {
@@ -58,7 +58,7 @@ variable "jenkins_admin_password" {
 variable "jfrog_enable" {
   type        = bool
   description = "Enable the installation of Jfrog"
-  default = false
+  default     = false
 }
 
 variable "jfrog_service_port" {
@@ -77,12 +77,49 @@ variable "jfrog_postgresql_password" {
   description = "Jfrog Postgresql password"
 }
 
+# -------------- Jenkins Maven Configuration ----------------
+
+variable "jenkins_agent_maven_config_enabled" {
+  type        = bool
+  description = "Whether jenkins maven configuration enabled / disabled"
+  default     = false
+}
+
+variable "jenkins_agent_maven_config_storage_class" {
+  type        = string
+  description = "Storage class name"
+  default = "jenkins-agent-maven-repo-local-storage"
+}
+
+variable "jenkins_agent_maven_config_reclaim_policy" {
+  type        = string
+  description = "Relaim policy type default is Delete"
+  default     = "Retain"
+}
+
+variable "jenkins_agent_maven_config_pvc_storage_size" {
+  type        = string
+  description = "Presistance volume cliame storage size"
+}
+
+variable "jenkins_agent_maven_config_pv_storage_size" {
+  type        = string
+  description = "Presistance volume storage size"
+}
+
+
+variable "jenkins_agent_maven_config_pv_storage_source_host_path" {
+  type        = string
+  description = "Presistance volume source host path"
+  default     = "/mnt/data/jenkins/agent-maven-repo"
+}
+
 # -------------- Kube Prometheus Stack ----------------
 
 variable "kube_prometheus_stack_enable" {
   type        = bool
   description = "Enable the installation of Jfrog"
-  default = false
+  default     = false
 }
 
 variable "prometheus_service_port" {

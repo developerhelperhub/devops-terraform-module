@@ -11,12 +11,12 @@ module "devops" {
 
   kubernetes_namespace = "devops"
 
-  jenkins_enable         = true
+  jenkins_enable         = false
   jenkins_domain_name    = var.jenkins_domain_name
   jenkins_admin_username = var.jenkins_admin_username
   jenkins_admin_password = module.common.random_password_16
 
-  jfrog_enable              = true
+  jfrog_enable              = false
   jfrog_domain_name         = var.jfrog_domain_name
   jfrog_postgresql_password = module.common.random_password_16
 
@@ -29,4 +29,8 @@ module "devops" {
   prometheus_alertmanager_enabled      = true
   prometheus_persistent_volume_enabled = true
   prometheus_persistent_volume_size    = "1Gi"
+
+  jenkins_agent_maven_config_enabled = true
+  jenkins_agent_maven_config_pvc_storage_size = "10Gi"
+  jenkins_agent_maven_config_pv_storage_size = "5Gi"
 }
