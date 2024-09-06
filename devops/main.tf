@@ -74,6 +74,19 @@ module "jfrog_artifactory_oss" {
   depends_on = [module.kubernetes_namespace]
 }
 
+module "jenkins_maven_config" {
+   source = "git::https://github.com/developerhelperhub/devops-terraform-module.git//modules/jenkins/maven-config?ref=dev"
+
+   jenkins_maven_config_enabled = var.jenkins_maven_config_enabled
+   namespace = var.kubernetes_namespace
+   pvc_storage_size = var.jenkins_maven_config_pvc_storage_size
+   pvc_storage_class  = var.jenkins_maven_config_pvc_storage_class
+   pv_storage_size  = var.jenkins_maven_config_pv_storage_size
+   pv_storage_class  = var.jenkins_maven_config_pv_storage_class
+   pv_storage_source_host_path  = var.jenkins_maven_config_pv_storage_source_host_path
+   pv_reclaim_policy  = var.jenkins_maven_config_pv_reclaim_policy
+}
+
 #Instaling the kube-prometheus-stack
 module "kube_prometheus_stack" {
   source = "git::https://github.com/developerhelperhub/devops-terraform-module.git//modules/kube-prometheus-stack?ref=dev"

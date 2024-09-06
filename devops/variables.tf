@@ -77,6 +77,49 @@ variable "jfrog_postgresql_password" {
   description = "Jfrog Postgresql password"
 }
 
+# -------------- Jenkins Maven Configuration ----------------
+
+variable "jenkins_maven_config_enabled" {
+  type        = bool
+  description = "Whether jenkins maven configuration enabled / disabled"
+  default = false
+}
+
+
+variable "jenkins_maven_config_pvc_storage_size" {
+  type        = string
+  description = "Presistance volume cliame storage size"
+}
+
+variable "jenkins_maven_config_pvc_storage_class" {
+  type        = string
+  description = "Presistance volume cliame storage class"
+  default = "manual"
+}
+
+variable "jenkins_maven_config_pv_storage_size" {
+  type        = string
+  description = "Presistance volume storage size"
+}
+
+variable "jenkins_maven_config_pv_storage_class" {
+  type        = string
+  description = "Presistance volume storage class"
+  default = "manual"
+}
+
+variable "jenkins_maven_config_pv_storage_source_host_path" {
+  type        = string
+  description = "Presistance volume source host path"
+  default = "/mnt/data/jenkins/maven-repo"
+}
+
+variable "jenkins_maven_config_pv_reclaim_policy" {
+  type        = string
+  description = "Presistance volume relaim policy"
+  default = "Retain"
+}
+
 # -------------- Kube Prometheus Stack ----------------
 
 variable "kube_prometheus_stack_enable" {
