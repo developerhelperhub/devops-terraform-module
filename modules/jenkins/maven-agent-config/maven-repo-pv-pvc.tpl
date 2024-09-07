@@ -25,11 +25,3 @@ spec:
   resources:
     requests:
       storage: ${pvc_storage_size}
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: jenkins-agent-maven-repo-local-storage
-  namespace: ${namespace}
-provisioner: rancher.io/local-path
-volumeBindingMode: WaitForFirstConsumer

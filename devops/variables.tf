@@ -1,3 +1,20 @@
+# -------------- Common ----------------
+variable "devops_service_passwords" {
+  type = map(object({
+    length  = number
+    special = bool
+    upper   = bool
+    lower   = bool
+  }))
+
+  default = {
+    "jenkins_password"         = { length = 20, special = true, upper = true, lower = true },
+    "jfrog_postgress_password" = { length = 12, special = true, upper = true, lower = true },
+    "grafana_password"         = { length = 16, special = true, upper = true, lower = true }
+  }
+}
+
+
 # -------------- Cluster ----------------
 variable "kind_cluster_name" {
   type        = string
@@ -50,7 +67,7 @@ variable "jenkins_admin_username" {
 variable "jenkins_admin_password" {
   type        = string
   description = "Jenkins admin password"
-  #    sensitive = true 
+  default = "AUTO_GENERATED"
 }
 
 # -------------- Jfrog ----------------
@@ -75,6 +92,7 @@ variable "jfrog_domain_name" {
 variable "jfrog_postgresql_password" {
   type        = string
   description = "Jfrog Postgresql password"
+  default = "AUTO_GENERATED"
 }
 
 # -------------- Jenkins Maven Configuration ----------------
@@ -88,7 +106,7 @@ variable "jenkins_agent_maven_config_enabled" {
 variable "jenkins_agent_maven_config_storage_class" {
   type        = string
   description = "Storage class name"
-  default = "jenkins-agent-maven-repo-local-storage"
+  default = "standard"
 }
 
 variable "jenkins_agent_maven_config_reclaim_policy" {
@@ -111,7 +129,7 @@ variable "jenkins_agent_maven_config_pv_storage_size" {
 variable "jenkins_agent_maven_config_pv_storage_source_host_path" {
   type        = string
   description = "Presistance volume source host path"
-  default     = "/mnt/data/jenkins/agent-maven-repo"
+  default     = "/mnt/data/jenkins-agent-maven-repo"
 }
 
 # -------------- Kube Prometheus Stack ----------------
@@ -147,6 +165,7 @@ variable "grafana_domain_name" {
 variable "grafana_admin_password" {
   type        = string
   description = "Grafana admin password"
+  default = "AUTO_GENERATED"
 }
 
 variable "prometheus_alertmanager_enabled" {
@@ -166,3 +185,4 @@ variable "prometheus_persistent_volume_size" {
   description = "Prometheus volume whether enabled / desabled, default size is 1Gi"
   default     = "1Gi"
 }
+

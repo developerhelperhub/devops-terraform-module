@@ -14,7 +14,7 @@ resource "local_file" "jenkins_agent_maven_config_local_file" {
   })
 }
 # Apply the generated YAML using local-exec provisioner
-resource "null_resource" "jenkins-agent-maven-config" {
+resource "null_resource" "jenkins_agent_maven_config" {
   
   count = var.jenkins_agent_maven_config_enabled ? 1 : 0
 

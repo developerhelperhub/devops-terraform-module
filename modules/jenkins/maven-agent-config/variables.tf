@@ -12,7 +12,7 @@ variable "namespace" {
 variable "storage_class" {
   type        = string
   description = "Storage class name"
-  default = "jenkins-agent-maven-repo-local-storage"
+  default = "standard"
 }
 
 variable "reclaim_policy" {
@@ -35,5 +35,5 @@ variable "pv_storage_size" {
 variable "pv_storage_source_host_path" {
   type        = string
   description = "Presistance volume source host path"
-  default = "/mnt/data/jenkins/agent-maven-repo"
+  default = "/mnt/data/jenkins-agent-maven-repo"
 }

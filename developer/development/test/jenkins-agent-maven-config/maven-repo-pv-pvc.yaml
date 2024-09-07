@@ -1,35 +1,27 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jenkins-agent-maven-repo-pv
+  name: jenkins-agent-maven-repo-pv-test
   namespace: devops
 spec:
   capacity:
-    storage: 5Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: jenkins-agent-maven-repo-local-storage
+  storageClassName: standard
   hostPath:
-    path: /mnt/data/jenkins/agent-maven-repo
+    path: "/mnt/data/jenkins-agent-maven-repo-pvc-test"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jenkins-agent-maven-repo-pvc
+  name: jenkins-agent-maven-repo-pvc-test
   namespace: devops
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: jenkins-agent-maven-repo-local-storage
+  storageClassName: standard
   resources:
     requests:
       storage: 10Gi
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: jenkins-agent-maven-repo-local-storage
-  namespace: devops
-provisioner: rancher.io/local-path
-volumeBindingMode: WaitForFirstConsumer
