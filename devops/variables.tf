@@ -1,3 +1,20 @@
+# -------------- Common ----------------
+variable "devops_service_passwords" {
+  type = map(object({
+    length  = number
+    special = bool
+    upper   = bool
+    lower   = bool
+  }))
+
+  default = {
+    "jenkins_password"         = { length = 20, special = true, upper = true, lower = true },
+    "jfrog_postgress_password" = { length = 12, special = true, upper = true, lower = true },
+    "grafana_password"         = { length = 16, special = true, upper = true, lower = true }
+  }
+}
+
+
 # -------------- Cluster ----------------
 variable "kind_cluster_name" {
   type        = string
@@ -28,7 +45,7 @@ variable "kubernetes_namespace" {
 variable "jenkins_enable" {
   type        = bool
   description = "Enable the installation of Jenkins"
-  default = true
+  default     = true
 }
 
 variable "jenkins_service_port" {
@@ -50,7 +67,7 @@ variable "jenkins_admin_username" {
 variable "jenkins_admin_password" {
   type        = string
   description = "Jenkins admin password"
-  #    sensitive = true 
+  default = "AUTO_GENERATED"
 }
 
 # -------------- Jfrog ----------------
@@ -58,7 +75,7 @@ variable "jenkins_admin_password" {
 variable "jfrog_enable" {
   type        = bool
   description = "Enable the installation of Jfrog"
-  default = false
+  default     = false
 }
 
 variable "jfrog_service_port" {
@@ -75,6 +92,104 @@ variable "jfrog_domain_name" {
 variable "jfrog_postgresql_password" {
   type        = string
   description = "Jfrog Postgresql password"
+  default = "AUTO_GENERATED"
+}
+
+# -------------- Jenkins Maven Configuration ----------------
+
+variable "jenkins_agent_maven_config_enabled" {
+  type        = bool
+  description = "Whether jenkins maven configuration enabled / disabled"
+  default     = false
+}
+
+variable "jenkins_agent_maven_config_storage_class" {
+  type        = string
+  description = "Storage class name"
+  default = "standard"
+}
+
+variable "jenkins_agent_maven_config_reclaim_policy" {
+  type        = string
+  description = "Relaim policy type default is Delete"
+  default     = "Retain"
+}
+
+variable "jenkins_agent_maven_config_pvc_storage_size" {
+  type        = string
+  description = "Presistance volume cliame storage size"
+}
+
+variable "jenkins_agent_maven_config_pv_storage_size" {
+  type        = string
+  description = "Presistance volume storage size"
+}
+
+
+variable "jenkins_agent_maven_config_pv_storage_source_host_path" {
+  type        = string
+  description = "Presistance volume source host path"
+  default     = "/mnt/data/jenkins-agent-maven-repo"
+}
+
+
+variable "jenkins_agent_maven_config_app_repository_id" {
+  type        = string
+  description = "Application artifactory repository id"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_repository_url" {
+  type        = string
+  description = "Application artifactory repository url"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_repository_username" {
+  type        = string
+  description = "Application artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_repository_password" {
+  type        = string
+  description = "Application artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_id" {
+  type        = string
+  description = "Application central artifactory repository id"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_url" {
+  type        = string
+  description = "Application central artifactory repository url"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_username" {
+  type        = string
+  description = "Application central artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_password" {
+  type        = string
+  description = "Application central artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_maven_master_password" {
+  type        = string
+  description = "Maven master password"
+  default = "NotSet"
+  sensitive = true
 }
 
 # -------------- Jenkins Maven Configuration ----------------
@@ -125,7 +240,7 @@ variable "jenkins_maven_config_pv_reclaim_policy" {
 variable "kube_prometheus_stack_enable" {
   type        = bool
   description = "Enable the installation of Jfrog"
-  default = false
+  default     = false
 }
 
 variable "prometheus_service_port" {
@@ -153,6 +268,7 @@ variable "grafana_domain_name" {
 variable "grafana_admin_password" {
   type        = string
   description = "Grafana admin password"
+  default = "AUTO_GENERATED"
 }
 
 variable "prometheus_alertmanager_enabled" {
@@ -172,3 +288,4 @@ variable "prometheus_persistent_volume_size" {
   description = "Prometheus volume whether enabled / desabled, default size is 1Gi"
   default     = "1Gi"
 }
+

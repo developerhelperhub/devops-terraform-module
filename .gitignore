@@ -36,6 +36,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-*-config
+devops-development-cluster-config
 
 .kube

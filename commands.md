@@ -1,3 +1,4 @@
+```shell
 terraform init
 terraform init -upgrade
 
@@ -23,12 +24,8 @@ terraform workspace delete devops_prod
 
 chmod +x terraform-clean.sh
 ./terraform-clean.sh
-
+```
 
 # References
 * https://developer.hashicorp.com/terraform/tutorials/modules/pattern-module-creation
 * https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d
-
-
-
-docker run -it --name test-jenkins-module-envornment-box -v ~/.kube/config:/work/.kube/config -e KUBECONFIG=/work/.kube/config -v ${HOME}:/root/ -v ${PWD}:/work -w /work --net host developerhelperhub/kub-terr-work-env-box
