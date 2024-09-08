@@ -27,7 +27,7 @@ jenkins-agent-maven-repo-local-storage   rancher.io/local-path   Delete         
 standard (default)                       rancher.io/local-path   Delete          WaitForFirstConsumer   false                  17h
 ```
 
-<!-- ## Destroy maven config
+## Destroy maven config
 ```shell
-terraform destroy -target=module.jenkins_agent_maven_config.null_resource.jenkins-agent-maven-config  -var="kind_cluster_name=devops-development-cluster"
-``` -->
+terraform destroy -target=module.devops.module.jenkins_agent_maven_config  -var="kind_cluster_name=devops-development-cluster"
+```

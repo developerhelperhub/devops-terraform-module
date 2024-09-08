@@ -32,7 +32,7 @@ spec:
   volumes:
   - name: maven-repo
     persistentVolumeClaim:
-      claimName: jenkins-agent-maven-repo-pvc-test
+      claimName: jenkins-agent-maven-repo-pvc
   - name: docker-sock
     hostPath:
       path: /var/run/docker.sock

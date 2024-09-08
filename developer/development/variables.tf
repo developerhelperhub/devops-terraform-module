@@ -31,3 +31,37 @@ variable "grafana_domain_name" {
     default = "grafana.devops.com"
 }
 
+variable "jenkins_agent_maven_config_app_repository_username" {
+  type        = string
+  description = "Application artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_repository_password" {
+  type        = string
+  description = "Application artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_username" {
+  type        = string
+  description = "Application central artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_password" {
+  type        = string
+  description = "Application central artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_maven_master_password" {
+  type        = string
+  description = "Maven master password"
+  default = "NotSet"
+  sensitive = true
+}

@@ -132,6 +132,66 @@ variable "jenkins_agent_maven_config_pv_storage_source_host_path" {
   default     = "/mnt/data/jenkins-agent-maven-repo"
 }
 
+
+variable "jenkins_agent_maven_config_app_repository_id" {
+  type        = string
+  description = "Application artifactory repository id"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_repository_url" {
+  type        = string
+  description = "Application artifactory repository url"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_repository_username" {
+  type        = string
+  description = "Application artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_repository_password" {
+  type        = string
+  description = "Application artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_id" {
+  type        = string
+  description = "Application central artifactory repository id"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_url" {
+  type        = string
+  description = "Application central artifactory repository url"
+  default = "NotSet"
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_username" {
+  type        = string
+  description = "Application central artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_app_central_repository_password" {
+  type        = string
+  description = "Application central artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "jenkins_agent_maven_config_maven_master_password" {
+  type        = string
+  description = "Maven master password"
+  default = "NotSet"
+  sensitive = true
+}
+
 # -------------- Kube Prometheus Stack ----------------
 
 variable "kube_prometheus_stack_enable" {

@@ -56,7 +56,7 @@ module "common" {
 
 #This resource is designed to generate a password across the system to enhance security. It can be used to create passwords for users, ensuring that each password includes special characters, uppercase and lowercase letters, and default numbers. You can also specify which special characters should be included in the password.
 resource "random_password" "devops_random_service_passwords" {
-  for_each = var.devops_service_passwords
+  for_each         = var.devops_service_passwords
   length           = each.value.length
   special          = each.value.special
   upper            = each.value.upper
@@ -102,6 +102,17 @@ module "jenkins_agent_maven_config" {
   pvc_storage_size                   = var.jenkins_agent_maven_config_pvc_storage_size
   pv_storage_size                    = var.jenkins_agent_maven_config_pv_storage_size
   pv_storage_source_host_path        = var.jenkins_agent_maven_config_pv_storage_source_host_path
+
+  app_repository_id               = var.jenkins_agent_maven_config_app_repository_id
+  app_repository_url              = var.jenkins_agent_maven_config_app_repository_url
+  app_repository_username         = var.jenkins_agent_maven_config_app_repository_username
+  app_repository_password         = var.jenkins_agent_maven_config_app_repository_password
+  app_central_repository_id       = var.jenkins_agent_maven_config_app_central_repository_id
+  app_central_repository_url      = var.jenkins_agent_maven_config_app_central_repository_url
+  app_central_repository_username = var.jenkins_agent_maven_config_app_central_repository_username
+  app_central_repository_password = var.jenkins_agent_maven_config_app_central_repository_password
+
+  maven_master_password = var.jenkins_agent_maven_config_maven_master_password
 
   depends_on = [module.kubernetes_namespace]
 }

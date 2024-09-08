@@ -25,3 +25,20 @@ This will show you the available storage classes, which you can reference in you
 ```shell
 kubectl -n devops describe pvc/jenkins-maven-repo-pvc
 ```
+vi ~/.bash_profile
+```shell
+export set TF_VAR_jenkins_agent_maven_config_app_repository_username="<user>"
+export set TF_VAR_jenkins_agent_maven_config_app_repository_password="<password>"
+export set TF_VAR_jenkins_agent_maven_config_app_central_repository_username="<user>"
+export set TF_VAR_jenkins_agent_maven_config_app_central_repository_password="<password>"
+export set TF_VAR_jenkins_agent_maven_config_maven_master_password="<maven master password>"
+```
+source ~/.bash_profile
+
+```shell
+echo $TF_VAR_jenkins_agent_maven_config_app_repository_username
+echo $TF_VAR_jenkins_agent_maven_config_app_repository_password
+echo $TF_VAR_jenkins_agent_maven_config_app_central_repository_username
+echo $TF_VAR_jenkins_agent_maven_config_app_central_repository_password
+echo $TF_VAR_jenkins_agent_maven_config_maven_master_password
+```

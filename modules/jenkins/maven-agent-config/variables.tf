@@ -37,3 +37,62 @@ variable "pv_storage_source_host_path" {
   description = "Presistance volume source host path"
   default = "/mnt/data/jenkins-agent-maven-repo"
 }
+
+variable "app_repository_id" {
+  type        = string
+  description = "Application artifactory repository id"
+  default = "NotSet"
+}
+
+variable "app_repository_url" {
+  type        = string
+  description = "Application artifactory repository url"
+  default = "NotSet"
+}
+
+variable "app_repository_username" {
+  type        = string
+  description = "Application artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "app_repository_password" {
+  type        = string
+  description = "Application artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "app_central_repository_id" {
+  type        = string
+  description = "Application central artifactory repository id"
+  default = "NotSet"
+}
+
+variable "app_central_repository_url" {
+  type        = string
+  description = "Application central artifactory repository url"
+  default = "NotSet"
+}
+
+variable "app_central_repository_username" {
+  type        = string
+  description = "Application central artifactory repository username"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "app_central_repository_password" {
+  type        = string
+  description = "Application central artifactory repository password"
+  default = "NotSet"
+  sensitive = true
+}
+
+variable "maven_master_password" {
+  type        = string
+  description = "Maven master password"
+  default = "NotSet"
+  sensitive = true
+}
