@@ -20,12 +20,10 @@ kubectl -n devops get pvc
 NAME                           STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                             AGE
 jenkins                        Bound     pvc-9fcb101f-796a-40ec-87d4-2081be355edf   8Gi        RWO            standard                                 2m39s
 jenkins-agent-maven-repo-pvc   Pending                                                                        jenkins-agent-maven-repo-local-storage   8m28s
-
-kubectl -n devops get storageclass
-NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-jenkins-agent-maven-repo-local-storage   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  8m29s
-standard (default)                       rancher.io/local-path   Delete          WaitForFirstConsumer   false                  17h
 ```
+
+## Maven Settings Config Map
+
 
 ## Destroy maven config
 ```shell

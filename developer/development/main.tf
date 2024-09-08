@@ -1,5 +1,5 @@
 module "devops" {
-  source = "git::https://github.com/developerhelperhub/devops-terraform-module.git//devops?ref=dev"
+  source = "git::https://github.com/developerhelperhub/devops-terraform-module.git//devops?ref=v1.2.0"
 
   kind_cluster_name = var.kind_cluster_name
   kind_http_port    = 80

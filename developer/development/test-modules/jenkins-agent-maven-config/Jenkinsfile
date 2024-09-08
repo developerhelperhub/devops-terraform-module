@@ -16,6 +16,12 @@ spec:
     - cat
     tty: true
     volumeMounts:
+    - name: maven-credentials
+      mountPath: /root/.m2/settings-security.xml
+      subPath: settings-security.xml
+    - name: maven-settings
+      mountPath: /root/.m2/settings.xml
+      subPath: settings.xml
     - name: maven-repo
       mountPath: /root/.m2
   - name: docker
@@ -33,9 +39,15 @@ spec:
   - name: maven-repo
     persistentVolumeClaim:
       claimName: jenkins-agent-maven-repo-pvc
+  - name: maven-settings
+    configMap:
+      name: jenkins-agent-maven-settings
+  - name: maven-credentials
+    secret:
+      secretName: jenkins-agent-maven-credentials
   - name: docker-sock
     hostPath:
-      path: /var/run/docker.sock
+      path: /var/run/docker.sock  
       '''
     }
   }
